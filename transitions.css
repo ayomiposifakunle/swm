@@ -1,0 +1,16 @@
+body img {
+    animation: fade linear forwards;
+    scale: 0;
+    opacity: 0%;
+    animation-timeline: view();
+    animation-range-start: -70px;
+    animation-range-end: -80px;
+    transform-origin: bottom;
+}
+
+@keyframes fade {
+100%{
+    scale: 1;
+    opacity: 100%;
+}
+}
