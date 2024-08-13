@@ -11,6 +11,17 @@ $select = "SELECT * FROM users";
 $selectq = $conn->query($select)
 ?>
 
+<?php
+$usersess = $_SESSION["userdata"]["id"];
+?>
+
+<?php
+$userinfo = "SELECT * FROM schedulewaste WHERE iscompleted=0 AND date=realdate";
+$userinfoq = $conn->query($userinfo);
+$not = $userinfoq->num_rows;
+echo "<script> alert('THERE ARE $not DISPOSAL SCHEDULE FROM SITE USERS TODAY'); </script>";
+?> 
+
 <!DOCTYPE html>
 <html>
 
@@ -140,7 +151,6 @@ if($completedwaste=$completedq->num_rows){
         </div>
       </div>
     </div>
-    <div class="btn-box"><a href="../index.php" class="bg-danger">Go to Homepage</a></div>
   </div>
 </section>
 
