@@ -10,10 +10,11 @@ include 'database/config.php';
 $usersess = $_SESSION["userdata"]["id"];
 ?>
 
-<!-- <?php
+<?php
 $userinfo = "SELECT * FROM schedulewaste WHERE iscompleted=0 AND user=$usersess";
 $userinfoq = $conn->query($userinfo);
-?> -->
+?> 
+
 
 <!DOCTYPE html>
 <html>
@@ -119,6 +120,8 @@ $userinfoq = $conn->query($userinfo);
     <th>Date</th>
     <th>Time</th>
     <th>Description</th>
+    <th>update</th>
+    <th>Delete</th>
     <th>Change To Completed</th>
 </tr>
 </thead>
@@ -135,11 +138,26 @@ while($pending = $userinfoq->fetch_assoc()){
     <td><?php echo $pending['date']; ?></td>
     <td><?php echo $pending['time']; ?></td>
     <td><?php echo $pending['description']; ?></td>
-    <td><a href="./changetocompleted.php?id=<?php echo $pending['id']; ?>">change status</a></td>
+    <td><a href="update.php?id=<?php echo  $pending['id'];?>">update</a></td>
+    <td><a href="delete.php?id=<?php echo  $pending['id'];?>">delete</a></td>
+    <td><a href="./changetocompleted.php?id=<?php echo $pending['id'];?>">change status</a></td>
 </tr>
 <?php
+$realdate = date("Y/m/d");
+// echo $pending['date'] ."<br>". $realdate;
+// if($pending['date'] == $realdate){
+//   echo 'match';
+// }
 }
 ?>
+
+<?php
+
+// $realtime = date("h:i");
+// echo $realdate. "<br>". $realtime;
+?>
+
+
 </tbody>
 </table>
     </main>

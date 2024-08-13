@@ -14,6 +14,15 @@ $usersess = $_SESSION["userdata"]["id"];
 $page = 'map';
 ?>
 
+<?php
+$userinfo = "SELECT * FROM schedulewaste WHERE iscompleted=0 AND user=$usersess AND date=realdate";
+$userinfoq = $conn->query($userinfo);
+$not = $userinfoq->num_rows;
+if($not > 0){
+  echo "<script> alert('YOU HAVE $not DISPOSAL SCHEDULE TODAY'); </script>";
+}
+?> 
+
 <!DOCTYPE html>
 <html lang="en">
   <?php include './sections/head.php'; ?>

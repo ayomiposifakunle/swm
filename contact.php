@@ -3,7 +3,6 @@ include 'database/session.php';
 include 'database/config.php';
 ?> 
 
-
 <?php
 if($_SERVER['REQUEST_METHOD'] == "POST"){
   if(!empty($_POST['type']) && !empty($_POST['number']) && !empty($_POST['location']) && !empty($_POST['date']) && !empty($_POST['time']) && !empty($_POST['description'])){
@@ -14,8 +13,11 @@ $dater = $_POST['date'];
 $timer = $_POST['time'];
 $descriptioner = $_POST['description'];
 $usersess = $_SESSION["userdata"]["id"];
+date_default_timezone_set("Africa/Lagos");
+$realdate = date("Y-m-d");
+$realtime = date("h:i");
 
-$inserttodb = "INSERT INTO `schedulewaste`(`type`, `number`, `location`, `date`, `time`, `description`, `user`) VALUES ('$typer',$numberr,'$locationer','$dater','$timer','$descriptioner', $usersess)";
+$inserttodb = "INSERT INTO `schedulewaste`(`type`, `number`, `location`, `date`, `time`, `description`, `user`, `realdate`, `realtime`) VALUES ('$typer',$numberr,'$locationer','$dater','$timer','$descriptioner', $usersess, '$realdate', '$realtime')";
 $inserttodbq = $conn->query($inserttodb);
 if($inserttodbq == TRUE){
   echo  '<script>alert("waste disposal schedule successful");</script>';
@@ -29,6 +31,8 @@ if($inserttodbq == TRUE){
 }
 
 ?>
+
+
 
 <!DOCTYPE html>
 <html>
