@@ -15,13 +15,19 @@ $page = 'map';
 ?>
 
 <?php
-$userinfo = "SELECT * FROM schedulewaste WHERE iscompleted=0 AND user=$usersess AND date=realdate";
+$realdate = date("Y-m-d");
+$userinfo = "SELECT date FROM schedulewaste WHERE user=$usersess AND iscompleted=0";
 $userinfoq = $conn->query($userinfo);
-$not = $userinfoq->num_rows;
-if($not > 0){
-  echo "<script> alert('YOU HAVE $not DISPOSAL SCHEDULE TODAY'); </script>";
+$num = $userinfoq->num_rows;
+while($data = $userinfoq->fetch_assoc()){
+  $dateinfo = $data['date'];
 }
-?> 
+if($realdate == $dateinfo){
+  echo '<script> alert("you have a disposal schedule today, view pending deposits in your dashboard"); </script>';
+    }
+?>
+
+<!-- 07030363474 -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -74,6 +80,7 @@ if($completedwaste=$completedq->num_rows){
     </div>
   </section>
 <!-- end of map  -->
+
 
  <!-- service section -->
  <section class="service_section layout_padding" style="margin-bottom: 10%;">
