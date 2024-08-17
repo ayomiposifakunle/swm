@@ -88,7 +88,7 @@ $xquery = $conn->query($x);
               <input type="password" placeholder="Enter your password" />
             </div> -->
             <div class="d-flex ">
-              <button style="background-color: rgb(240, 42, 42); width: max-content; border-radius: 15px; margin: 0 auto; color: black; font-weight: heavy;">
+              <button style="background-color: rgb(240, 42, 42); width: max-content; border-radius: 15px; margin: 0 auto; color: black; font-weight: heavy; margin-top: 10px;">
              Get New Password
               </button>
             </div>

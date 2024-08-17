@@ -3,6 +3,12 @@ include 'database/session.php';
 ?>
 
 <?php
+if($_SESSION["userdata"]["id"] == "17"){
+  header("location: admin/dashboard.php");
+}
+?>
+
+<?php
 include "database/config.php";
 ?>
 

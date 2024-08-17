@@ -46,9 +46,9 @@ $page = 'home';
             </p>
             <p class="mt-1 text-danger" style="font-size: small;">Need to know when you are close to a trash bin?</p>
                   
-            <a href="./map.php" style="display: inline-block; color:white; background-color: red; border-radius: 6px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: small; outline: none; border: none;" class="btn getnb">
+            <a onclick="notbut()" href="pendingwaste.php" style="display: inline-block; color:white; background-color: red; border-radius: 6px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: small; outline: none; border: none;" class="btn getnb">
               Get Notified
-             </a>
+             </a> <p id="nottext"><strong></strong></p>
           </div>
         </div>
         <div class="col-md-6 img-box mt-5">
@@ -72,6 +72,9 @@ $page = 'home';
                   <img src="images/s1.png" alt="" />
                 </div>
                 <div class="detail-box">
+                <span class="material-symbols-outlined">
+arrow_downward
+</span>
                   <h5>
                     Reduce
                   </h5>
@@ -87,6 +90,9 @@ $page = 'home';
                   <img src="images/s2.png" alt="" />
                 </div>
                 <div class="detail-box">
+                <span class="material-symbols-outlined">
+cycle
+</span>
                   <h5>
                    Re-use
                   </h5>
@@ -102,6 +108,9 @@ $page = 'home';
                   <img src="images/s3.png" alt="" />
                 </div>
                 <div class="detail-box">
+<span class="material-symbols-outlined">
+recycling
+</span>
                   <h5>
                  Recycle
                   </h5>
@@ -155,7 +164,7 @@ $page = 'home';
           </div>
         </div>
         <div class="col-md-6 img-box">  <iframe src="https://www.google.com/maps/d/embed?mid=1fpnvrMuzzCOE256WfX_fHHF_PclY5N0&ehbc=2E312F&noprof=1" style="border:0; width: 100%; height: 100vh;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> </div>
-      </div>
+        </div>
     </div>
  <!-- end of Browse our mapping system -->
 
@@ -284,7 +293,32 @@ $page = 'home';
   </footer>
 <!-- footer -->
 
+<script>
+  //  setInterval(freqnot1, 120000);
+  // setInterval(freqnot2, 120000);
+  setTimeout(freqnot1, 1000);
+  // setInterval(freqnot4, 120000);
+  function freqnot1(){
+alert('Thank you for using this site, Remember to always dispose waste in a thrash');
+  }
+  function freqnot2(){
+    alert('Remember to always properly dispose waste in a thrash');
+  }
+  function freqnot3(){
+    alert('Schedule a day for waste disposal in the report page, Choose a date and we will remind on the due date');
+  }
+  function freqnot4(){
+    alert('Checkout our map to see the bin nearest to you, you can see more features about our bin in the map page');
+  }
 
+
+
+  function notbut(){
+    // document.getElementById('nottext').innerHTML='Notification is automatically on for all waste deposit schedules';
+  alert('Notification is automatically on for all waste deposit schedules');
+  }
+
+</script>
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">

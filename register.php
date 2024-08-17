@@ -74,20 +74,20 @@ if(isset($_POST["signup"])){
           <div>
               <input type="file" placeholder="Choose a profile picture" name="pimage"/>
             </div>
-            <div>
+            <div style="margin-top: 10px;">
                 <input type="text" placeholder="Input name" name="name" />
               </div>
-              <div>
+              <div style="margin-top: 10px;">
                 <input type="email" placeholder="Input email" name="email"/>
               </div>
-            <div>
+            <div style="margin-top: 10px;">
               <input type="text" placeholder="Input matric number" name="matricnumber" />
             </div>
-            <div>
+            <div style="margin-top: 10px;">
               <input type="password" placeholder="Input password" name="password"/>
             </div>
             <div class="d-flex ">
-              <button style="background-color: rgb(240, 42, 42); width: max-content; border-radius: 15px; margin: 0 auto; color: black; font-weight: heavy;" name="signup">
+              <button style="background-color: rgb(240, 42, 42); width: max-content; border-radius: 15px; margin: 0 auto; color: black; font-weight: heavy; margin-top: 10px;;" name="signup">
              Register
               </button>
             </div>

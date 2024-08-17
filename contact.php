@@ -1,7 +1,22 @@
 <?php
 include 'database/session.php';
+?>
+
+<?php
+if($_SESSION["userdata"]["id"] == "17"){
+  header("location: admin/dashboard.php");
+}
+?>
+
+<?php
 include 'database/config.php';
 ?> 
+
+<?php
+// if($sess = 17){
+//   header("location: admin/dashboard.php");
+// }
+?>
 
 <?php
 if($_SERVER['REQUEST_METHOD'] == "POST"){
@@ -38,9 +53,6 @@ if($inserttodbq == TRUE){
 <?php include './sections/nav.php'; ?>
   <!-- contact section -->
   <section class="contact_section layout_padding" style="margin-top: 4%;">
-    <a href="./index.php"><span class="material-symbols-outlined" style="color: red;">
-      arrow_back
-      </span></a>
     <div class="container">
       <div class="heading_container">
         <h2>
@@ -217,6 +229,24 @@ if($inserttodbq == TRUE){
 </footer>
 <!-- footer -->
 
+<script>
+  //  setTimeout(freqnot1, 1000);
+  // // setTimeout(freqnot2, 3000);
+  setTimeout(freqnot3, 1000);
+  // setTimeout(freqnot4, 7000);
+  function freqnot1(){
+alert('Thank you for using this site, remember to always dispose waste in a thrash');
+  }
+  function freqnot2(){
+    alert('Remember to always properly dispose waste in a thrash');
+  }
+  function freqnot3(){
+    alert('Schedule a day for waste disposal in the report page, Choose a date and we will remind on the due date');
+  }
+  function freqnot4(){
+    alert('Checkout our map to see the bin nearest to you, you can see more features about our bin in the map page');
+  }
+</script>
 
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.js"></script>

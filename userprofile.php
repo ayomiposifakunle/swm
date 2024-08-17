@@ -38,17 +38,109 @@ if($realdate == $dateinfo){
   <?php include './sections/head.php'; ?>
 <body>
 <?php include './sections/nav.php'; ?>
-
-  <!-- map -->
-  <section class="service_section layout_padding" style="margin-bottom: 10%; margin-top: 5%">
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2 style="font-size: 6vh;"> MAP OF NEAREST BIN</h2>
-          <iframe src="https://www.google.com/maps/d/embed?mid=1fpnvrMuzzCOE256WfX_fHHF_PclY5N0&ehbc=2E312F&noprof=1" style="border:0; width: 100%; height: 100vh;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<!-- header -->
+  <section class="container" style="margin-top: 5%; background-color: whitesmoke; border-radius: 10px; margin-bottom: 10%;">
+  <?php
+$data = "SELECT * FROM users WHERE id=$usersess";
+$dataq = $conn->query($data);
+$info = $dataq->fetch_assoc();
+?> 
+  <marquee class="text-center fw-heavy">WELCOME TO YOUR DASHBOARD <span style="color: red;"><?php echo$info['name'];?></span></marquee>
+      <div class="row">
+        <div class="col-md-2 mb-4">
+          <img src="<?php echo 'uploads/'.$info['image']; ?>" alt="" style="height: 10rem; width: 10rem; border-radius: 25%;" >
         </div>
+        <div class="col-md-9">
+  <p>Username: <?php echo $info['name'];?></p>
+  <p>E-mail:<?php echo $info['email']; ?></p>
+  <p>Notifications:
+  <button onClick="on();">on</button>
+  <button onClick="off();">off</button>
+    </form>
+  </p>
+  <p>Rewards:<?php
+            $completed = "SELECT * FROM schedulewaste WHERE iscompleted=1 AND user=$usersess";
+$completedq = $conn->query($completed);
+if($completedwaste=$completedq->num_rows){
+  echo $completedwaste*5;
+}else{
+  echo '0';
+}
+?>   points</p>
+  <a href="edituser.php?id=<?php echo $usersess; ?>" style="text-decoration: none; color: red;">update personal informations</a> <br>
+  <br> <span class="material-symbols-outlined text-danger">
+lock_person
+</span>   <a href="logout.php" style=" color: red">Logout</a>
+        </div>
+      </div>
+    </section>
+<!-- end of header-->
+
+ <!-- service section -->
+ <section class="service_section layout_padding" style="margin-bottom: 10%;">
+  <div class="container">
+    <div class="heading_container heading_center">
+      <h2 style="font-size: 6vh;"> WASTE DEPOSIT INFORMATION</h2>
     </div>
-  </section>
-<!-- end of map  -->
+    <div class="row">
+      <div class="col-sm-6 col-md-4 mx-auto">
+        <div class="box ">
+          <div class="img-box">
+            <img src="images/s1.png" alt="" />
+          </div>
+          <div class="detail-box">
+            <h5>
+            Current Waste Report
+            </h5>
+            <p>
+            <?php
+$pending = "SELECT * FROM schedulewaste WHERE iscompleted=0 AND user=$usersess";
+$pendingq = $conn->query($pending);
+if($pendingwaste=$pendingq->num_rows){
+  echo $pendingwaste;
+}else{
+  echo '0';
+}
+?>
+         <br> <br> <a href="./pendingwaste.php">View Pending Deposits</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4 mx-auto">
+        <div class="box ">
+          <div class="img-box">
+            <img src="images/s2.png" alt="" />
+          </div>
+          <div class="detail-box">
+            <h5>
+            Waste Successfully Deposited
+            </h5>
+            <p>
+              <?php
+            $completed = "SELECT * FROM schedulewaste WHERE iscompleted=1 AND user=$usersess";
+$completedq = $conn->query($completed);
+if($completedwaste=$completedq->num_rows){
+  echo $completedwaste;
+}else{
+  echo '0';
+}
+?>   
+            <br> <br> <a href="./completedwaste.php">View Completed Deposits</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="btn-box">
+      <a href="contact.php" class="bg-danger">
+      Report Waste Issue
+      </a>
+    </div>
+  </div>
+</section>
+<!-- end service section -->
+
 
   <!-- info section -->
   <section class="info_section bg-danger">
@@ -175,11 +267,6 @@ if($realdate == $dateinfo){
 <!-- footer -->
 <script>
   // 1800000
-
-  function notification(){
-      alert("Report waste issue now to earn more points");
-    }
-
   function on(){
     alert('notification is on');
 document.getElementById("not").style.display = "block";
@@ -191,15 +278,15 @@ document.getElementById("not").style.display = "block";
     document.getElementById("not").style.display = "none";
   }
 
-  //  setInterval(freqnot1, 120000);
-  setTimeout(freqnot4, 1000);
-  // setInterval(freqnot3, 120000);
-  // setInterval(freqnot4, 120000);
+  setTimeout(freqnot2, 1000);
+  // setTimeout(freqnot2, 3000);
+  // setTimeout(freqnot3, 5000);
+  // setTimeout(freqnot4, 7000);
   function freqnot1(){
-alert('Thank you for using this site, remember to always dispose waste in a thrash');
+alert('Thank you for using this site, Remember to always properly dispose waste in a thrash');
   }
   function freqnot2(){
-    alert('Remember to always properly dispose waste in a thrash');
+    alert('Earn 5 points for each completed waste deposit, Check dashboard for information on pending and completed wastes');
   }
   function freqnot3(){
     alert('Schedule a day for waste disposal in the report page, Choose a date and we will remind on the due date');
@@ -207,7 +294,6 @@ alert('Thank you for using this site, remember to always dispose waste in a thra
   function freqnot4(){
     alert('Checkout our map to see the bin nearest to you, you can see more features about our bin in the map page');
   }
-
 </script>
 
   <script src="js/jquery-3.4.1.min.js"></script>

@@ -21,7 +21,7 @@ if(isset($_POST["login"])){
 				if($matricnumber == "000" && $password == "admin"){
 					header("location: admin/dashboard.php");
 				}else{
-					header("location: map.php");
+					header("location: userprofile.php");
 				}		
 			} else{
 				echo '<script> alert("incorrect password"); </script>';
@@ -118,11 +118,11 @@ if(isset($_POST["login"])){
 			<div>
               <input type="text" placeholder="Enter your matric number" name="matricnumber" />
             </div>
-            <div>
+            <div style="margin-top: 10px;">
               <input type="password" placeholder="Enter your password" name="password" />
             </div>
             <div class="d-flex ">
-              <button style="background-color: rgb(240, 42, 42); width: max-content; border-radius: 15px; margin: 0 auto; color: black; font-weight: heavy;" name="login">
+              <button style="background-color: rgb(240, 42, 42); width: max-content; border-radius: 15px; margin: 0 auto; color: black; font-weight: heavy; margin-top: 10px;" name="login">
               Sign In
               </button>
 			<a href="forgotpassword.php" style="color: red; text-decoration: none; display: flex; justify-content: center; font-size: small; margin-top: 3%;">forgot your password</a>
