@@ -3,6 +3,12 @@ include '../database/session.php';
 ?>
 
 <?php
+if($_SESSION["userdata"]["id"] != "17"){
+  header("location: ../map.php");
+}
+?>
+
+<?php
 include '../database/config.php';
 ?>
 
@@ -11,16 +17,19 @@ $select = "SELECT * FROM users";
 $selectq = $conn->query($select)
 ?>
 
-<?php
-$usersess = $_SESSION["userdata"]["id"];
-?>
 
 <?php
-$userinfo = "SELECT * FROM schedulewaste WHERE iscompleted=0 AND date=realdate";
+$realdate = date("Y-m-d");
+$userinfo = "SELECT date FROM schedulewaste WHERE iscompleted=0";
 $userinfoq = $conn->query($userinfo);
-$not = $userinfoq->num_rows;
-echo "<script> alert('THERE ARE $not DISPOSAL SCHEDULE FROM SITE USERS TODAY'); </script>";
-?> 
+$num = $userinfoq->num_rows;
+while($data = $userinfoq->fetch_assoc()){
+  $dateinfo = $data['date'];
+}
+if($realdate == $dateinfo){
+  echo '<script> alert("Some of site users have disposal schedule for today, view pending deposits for more details"); </script>';
+    }
+?>
 
 <!DOCTYPE html>
 <html>
@@ -72,8 +81,6 @@ echo "<script> alert('THERE ARE $not DISPOSAL SCHEDULE FROM SITE USERS TODAY'); 
   </style>
 </head>
 <body>
- <
-
     <!-- main -->
 <main style="margin-bottom: 3%">
 <section class="service_section layout_padding" style="margin-bottom: 10%;">
@@ -153,7 +160,8 @@ if($completedwaste=$completedq->num_rows){
     </div>
   </div>
 </section>
-
+<a href="./adminprofile.php?id=<?php echo $_SESSION["userdata"]["id"]; ?>" style="display: flex; justify-content: center; margin: 0 auto">Edit Profile</a> <br>
+<a href="../logout.php" style="display: flex; justify-content: center; margin: 0 auto">Logout</a>
 </main>
 
 

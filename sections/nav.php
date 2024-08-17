@@ -26,9 +26,12 @@
     </div>
 
  <span class="material-symbols-outlined" id="not" style="display: none;">notification_important</span>
-    <a class="nav-link" href="login.php" style="color: white;"><span class="material-symbols-outlined">
+    <a class="nav-link" href="userprofile.php" style="color: white;"><span class="material-symbols-outlined">
      person
      </span></a>
+     
+
+     
   </nav>
 </div>
 <!-- end of navbar -->
